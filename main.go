@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	iteration.Repeat("w")
+	iteration.Repeat("w", 6)
 }
