@@ -8,11 +8,10 @@ func Sum(numbers []int) (sum int) {
 }
 
 func SumAll(numbersToSum ...[]int) []int {
-	lengthOfNumbersToSum := len(numbersToSum)
-	sums := make([]int, lengthOfNumbersToSum) // make slice of capacity lengthOfNumbersToSum
+	var sums []int
 
-	for index, numbers := range numbersToSum {
-		sums[index] = Sum(numbers) // assign vaue of Sum to slice sums at specified index
+	for _, numbers := range numbersToSum {
+		sums = append(sums, Sum(numbers))
 	}
 	return sums
 }
