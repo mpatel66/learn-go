@@ -22,27 +22,20 @@ func TestRectangle(t *testing.T) {
 
 func TestArea(t *testing.T) {
 
-	checkArea := func(t testing.TB, shape Shape, want float64) {
-		t.Helper()
-		got := shape.Area()
-		if got != want {
-			t.Errorf("got %.g, want %.g", got, want)
-		}
-
+	areaTests := []struct {
+		shape Shape
+		want  float64
+	}{
+		{Rectangle{5, 10}, 50.0},
+		{Circle{10}, 314.1592653589793},
 	}
-	t.Run("returns area of rectangle", func(t *testing.T) {
-		rectangle := Rectangle{5.0, 10.0}
-		want := 50.0
 
-		checkArea(t, rectangle, want)
+	for _, tt := range areaTests {
+		got := tt.shape.Area()
 
-	})
+		if got != tt.want {
+			t.Errorf("got %.g, want %.g", got, tt.want)
+		}
+	}
 
-	t.Run("returns are of circle", func(t *testing.T) {
-		circle := Circle{10}
-
-		want := 314.1592653589793
-		checkArea(t, circle, want)
-
-	})
 }
