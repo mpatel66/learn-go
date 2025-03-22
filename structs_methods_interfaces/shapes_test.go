@@ -1,10 +1,11 @@
-package structsmethodsinterfaces
+package shapes
 
 import "testing"
 
 func TestRectangle(t *testing.T) {
 	t.Run("returns perimeter of rectangle", func(t *testing.T) {
-		got := Perimeter(10.0, 10.0)
+		rectangle := Rectangle{10.0, 10.0}
+		got := Perimeter(rectangle)
 		want := 40.0
 
 		if got != want {
@@ -14,7 +15,8 @@ func TestRectangle(t *testing.T) {
 	})
 
 	t.Run("returns area of rectangle", func(t *testing.T) {
-		got := Area(5.0, 10.0)
+		rectangle := Rectangle{5.0, 10.0}
+		got := Area(rectangle)
 		want := 50.0
 
 		if got != want {
