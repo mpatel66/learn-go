@@ -99,3 +99,18 @@ func TestUpdate(t *testing.T) {
 
 	})
 }
+
+func TestDelete(t *testing.T) {
+	t.Run("updates existing word", func(t *testing.T) {
+		word := "apple"
+		oldDefinition := "a round, green fruit"
+
+		dictionary := Dictionary{"apple": oldDefinition}
+		dictionary.Delete(word)
+
+		_, err := dictionary.Search(word)
+		assertError(t, err, ErrNotFound)
+
+	})
+
+}
