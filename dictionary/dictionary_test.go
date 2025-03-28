@@ -79,7 +79,7 @@ func assertDefinition(t testing.TB, dictionary Dictionary, word, definition stri
 }
 
 func TestUpdate(t *testing.T) {
-	t.Run("update", func(t *testing.T) {
+	t.Run("updates existing word", func(t *testing.T) {
 		word := "apple"
 		newDefinition := "a round, red fruit"
 		oldDefinition := "a round, green fruit"
@@ -89,5 +89,13 @@ func TestUpdate(t *testing.T) {
 
 		assertDefinition(t, dictionary, word, newDefinition)
 	})
+	t.Run("does not add new word", func(t *testing.T) {
+		word := "apple"
+		definition := "a round, red fruit"
 
+		dictionary := Dictionary{}
+		err := dictionary.Update(word, definition)
+		assertError(t, err, ErrWordDoesNotExist)
+
+	})
 }
