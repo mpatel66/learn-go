@@ -1,11 +1,17 @@
 package dictionary
 
-import "errors"
-
 type Dictionary map[string]string
 
-var ErrNotFound = errors.New("could not find the word you were looking for")
-var ErrWordExists = errors.New("this word already exists in the dictionary")
+type DictionaryError string
+
+const (
+	ErrNotFound   = DictionaryError("could not find the word you were looking for")
+	ErrWordExists = DictionaryError("this word already exists in the dictionary")
+)
+
+func (e DictionaryError) Error() string {
+	return string(e)
+}
 
 func (d Dictionary) Search(word string) (string, error) {
 	definition, ok := d[word] // map can return two values, one of which is a boolean that indicates if it found the key
