@@ -77,3 +77,17 @@ func assertDefinition(t testing.TB, dictionary Dictionary, word, definition stri
 
 	assertStrings(t, got, definition)
 }
+
+func TestUpdate(t *testing.T) {
+	t.Run("update", func(t *testing.T) {
+		word := "apple"
+		newDefinition := "a round, red fruit"
+		oldDefinition := "a round, green fruit"
+
+		dictionary := Dictionary{"apple": oldDefinition}
+		dictionary.Update(word, newDefinition)
+
+		assertDefinition(t, dictionary, word, newDefinition)
+	})
+
+}
